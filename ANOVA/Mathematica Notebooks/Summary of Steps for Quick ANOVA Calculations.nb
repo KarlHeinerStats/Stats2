@@ -1,0 +1,199 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5339,        189]
+NotebookOptionsPosition[      4718,        164]
+NotebookOutlinePosition[      5290,        186]
+CellTagsIndexPosition[      5247,        183]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Summary of Steps for Quick ANOVA Calculations", "Subsubsection",
+ CellChangeTimes->{{3.637775604501404*^9, 3.6377756066074076`*^9}},
+ FontFamily->"Comic Sans MS",
+ FontSize->16],
+
+Cell["\<\
+We wish to fill in the following table.  Note that for the df and SS columns, \
+the Among and Within rows sum to the Total row.  The following steps will \
+result in the desired table.\
+\>", "Text",
+ CellChangeTimes->{{3.637775427611292*^9, 3.637775435317706*^9}},
+ FontFamily->"Comic Sans MS",
+ FontSize->16],
+
+Cell[TextData[Cell[BoxData[
+ FormBox[GridBox[{
+    {"Source", "df", "SS", "MS", "F"},
+    {"Among", 
+     RowBox[{"(", "f", ")"}], 
+     RowBox[{"(", "g", ")"}], 
+     RowBox[{"(", "h", ")"}], 
+     RowBox[{"(", "i", ")"}]},
+    {"Within", 
+     RowBox[{"(", "e", ")"}], 
+     RowBox[{"(", "d", ")"}], 
+     RowBox[{"(", "c", ")"}], " "},
+    {"Total", 
+     RowBox[{"(", "a", ")"}], 
+     RowBox[{"(", "b", ")"}], " ", " "}
+   }], TraditionalForm]]]], "Text",
+ TextAlignment->Center,
+ TextJustification->0,
+ FontFamily->"Comic Sans MS",
+ FontSize->16],
+
+Cell[TextData[{
+ "(a).  Total degrees of freedom is the denominator of ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    SubscriptBox["s", "total"], "2"], TraditionalForm]]],
+ ", the variance of all ",
+ Cell[BoxData[
+  FormBox["N", TraditionalForm]]],
+ " observations ignoring the fact that these observations are grouped into ",
+ Cell[BoxData[
+  FormBox["J", TraditionalForm]]],
+ " groups.  Total degrees of freedom is ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"N", "-", "1"}], TraditionalForm]]],
+ ".\n\n(b).  Sum of Squares Total, SST, is the numerator of the variance of \
+all ",
+ Cell[BoxData[
+  FormBox["N", TraditionalForm]]],
+ " observations ignoring the fact that these observations are grouped into ",
+ Cell[BoxData[
+  FormBox["J", TraditionalForm]]],
+ " groups.  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"SST", "=", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"N", "-", "1"}], ")"}], " ", 
+     FormBox[
+      SuperscriptBox[
+       SubscriptBox["s", "total"], "2"],
+      TraditionalForm]}]}], TraditionalForm]]],
+ ".\n\n(c).  Means Squares Within is ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    SubscriptBox["s", "p"], "2"], TraditionalForm]]],
+ ".  Find the weighted average of the group variances, ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    SubscriptBox["s", "p"], "2"], TraditionalForm]]],
+ "(a.k.a. MSW, MSE, MSresidual).  Its denominator is ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", 
+    RowBox[{"N", "-", "J"}], ")"}], TraditionalForm]]],
+ ", and its numerator is SSW (or SSE or SSresidual).\n\n\n\n(d).  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"SSW", "=", 
+    FormBox[
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           SubscriptBox["n", "1"], "-", "1"}], ")"}], " ", 
+         SuperscriptBox[
+          SubscriptBox["s", "1"], "2"]}], "+", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           SubscriptBox["n", "2"], "-", "1"}], ")"}], " ", 
+         SuperscriptBox[
+          SubscriptBox["s", "2"], "2"]}], "+"}], "..."}], "+", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         SubscriptBox["n", "J"], "-", "1"}], ")"}], " ", 
+       SuperscriptBox[
+        SubscriptBox["s", "J"], "2"]}]}],
+     TraditionalForm]}], TraditionalForm]]],
+ ".\n\n(e).  Within degrees of freedom is ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"N", "-", "J"}], TraditionalForm]]],
+ ".\n\n(f).  Among degrees of freedom is ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"J", "-", "1"}], TraditionalForm]]],
+ ".\n\n(g). ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{" ", 
+    RowBox[{"SSA", "=", 
+     RowBox[{"SST", "-", "SSW"}]}]}], TraditionalForm]]],
+ ".\n\n(h).  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"MSA", "=", 
+    RowBox[{
+     RowBox[{"SSA", "/", "J"}], "-", "1"}]}], TraditionalForm]]],
+ ".\n\n(i).  Our test statisitic is ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"MSA", "/", "MSW"}], TraditionalForm]]],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.637775461525752*^9, 3.637775520462655*^9}},
+ FontFamily->"Comic Sans MS",
+ FontSize->16]
+}, Open  ]]
+},
+WindowToolbars->"EditBar",
+WindowSize->{1016, 639},
+WindowMargins->{{122, Automatic}, {Automatic, 39}},
+PrintingCopies->1,
+PrintingPageRange->{32000, 32000},
+PrintingOptions->{"Magnification"->1.,
+"PaperOrientation"->"Portrait",
+"PaperSize"->{611.9999999999999, 792.}},
+Magnification:>1.25 Inherited,
+FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (September 9, 2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 183, 3, 43, "Subsubsection"],
+Cell[766, 27, 319, 7, 77, "Text"],
+Cell[1088, 36, 552, 19, 131, "Text"],
+Cell[1643, 57, 3059, 104, 779, "Text"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
